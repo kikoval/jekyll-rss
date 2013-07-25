@@ -6,7 +6,7 @@
 # Uses the following attributes in _config.yml:
 #   name        - the name of the site
 #   url         - the url of the site
-#   description - (optional) a description for the feed (if not specified will be left blank)
+#   description - (optional) a description for the feed (if not specified will be generated from name)
 #   author      - (optional) the author of the site (if not specified will be left blank)
 #   copyright   - (optional) the copyright of the feed (if not specified will be left blank)
 #   rss_path    - (optional) the path to the feed (if not specified "/" will be used)
