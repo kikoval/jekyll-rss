@@ -4,13 +4,14 @@
 #        attributes in the _config.yml file
 #
 # Uses the following attributes in _config.yml:
-#   name        - the name of the site
-#   url         - the url of the site
-#   description - (optional) a description for the feed (if not specified will be generated from name)
-#   author      - (optional) the author of the site (if not specified will be left blank)
-#   copyright   - (optional) the copyright of the feed (if not specified will be left blank)
-#   rss_path    - (optional) the path to the feed (if not specified "/" will be used)
-#   rss_name    - (optional) the name of the rss file (if not specified "rss.xml" will be used)
+#   name           - the name of the site
+#   url            - the url of the site
+#   description    - (optional) a description for the feed (if not specified will be generated from name)
+#   author         - (optional) the author of the site (if not specified will be left blank)
+#   copyright      - (optional) the copyright of the feed (if not specified will be left blank)
+#   rss_path       - (optional) the path to the feed (if not specified "/" will be used)
+#   rss_name       - (optional) the name of the rss file (if not specified "rss.xml" will be used)
+#   rss_post_limit - (optional) the number of posts in the feed
 #
 # Author: Assaf Gelber <assaf.gelber@gmail.com>
 # Site: http://agelber.com
@@ -42,7 +43,10 @@ module Jekyll
         maker.channel.author = site.config["author"]
         maker.channel.updated = site.posts.map { |p| p.date  }.max
         maker.channel.copyright = site.config['copyright']
-        site.posts.each do |post|
+
+        post_limit = (site.config['rss_post_limit'] - 1 rescue site.posts.count)
+
+        site.posts[0..post_limit].each do |post|
           maker.items.new_item do |item|
             item.title = post.title
             item.link = "#{site.config['url']}#{post.url}"
