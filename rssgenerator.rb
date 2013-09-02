@@ -46,7 +46,7 @@ module Jekyll
 
         post_limit = (site.config['rss_post_limit'] - 1 rescue site.posts.count)
 
-        site.posts[0..post_limit].each do |post|
+        site.posts.reverse[0..post_limit].each do |post|
           maker.items.new_item do |item|
             item.title = post.title
             item.link = "#{site.config['url']}#{post.url}"
